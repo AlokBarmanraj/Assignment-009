@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Button } from "@heroui/react";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
-// import { ThemeSwitch } from "./ThemeSwitch";
+import { ThemeSwitch } from "./ThemeSwitch";
 import Link from "next/link";
 
 const Navbar = () => {
@@ -52,7 +52,7 @@ const Navbar = () => {
   );
   return (
     <div>
-      <nav className="top-3 z-40 w-full">
+      <nav className="fixed mt-2 top-0 z-40 w-full border-b border-separator bg-background/70 backdrop-blur-lg">
         <header className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
           <div className="flex items-center gap-4">
             <button
@@ -101,7 +101,7 @@ const Navbar = () => {
             <Link href="#">Login</Link>
             <Button>Sign Up</Button>
             <div>
-              {/* <ThemeSwitch></ThemeSwitch> */}
+              <ThemeSwitch></ThemeSwitch>
             </div>
           </div>
         </header>
