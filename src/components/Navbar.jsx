@@ -52,7 +52,7 @@ const Navbar = () => {
   );
   return (
     <div>
-      <nav className="fixed mt-2 top-0 z-40 w-full border-b border-separator bg-background/70 backdrop-blur-lg">
+      <nav className="sticky mt-2 top-0 z-40 w-full border-b border-separator bg-background/70 backdrop-blur-lg">
         <header className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
           <div className="flex items-center gap-4">
             <button
@@ -98,8 +98,8 @@ const Navbar = () => {
           </div>
           <ul className="hidden items-center gap-4 md:flex">{navLink}</ul>
           <div className="hidden items-center gap-4 md:flex">
-            <Link href="#">Login</Link>
-            <Button>Sign Up</Button>
+            <Link href="signin">Login</Link>
+            <Link href="/signup"><Button>Sign Up</Button></Link>
             <div>
               <ThemeSwitch></ThemeSwitch>
             </div>
@@ -110,10 +110,10 @@ const Navbar = () => {
             <ul className="flex flex-col gap-2 p-4">
               {navLink}
               <li className="mt-4 flex flex-col gap-2 border-t border-separator pt-4">
-                <Link href="#" className="block py-2">
+                <Link href="/signin" className="block py-2">
                   Login
                 </Link>
-                <Button className="w-full">Sign Up</Button>
+                <Link href="/signup"><Button className="w-full">Sign Up</Button></Link>
               </li>
             </ul>
           </div>

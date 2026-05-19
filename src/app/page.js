@@ -1,14 +1,14 @@
-import Image from "next/image";
-import Hero from "./components/Hero";
-import FieldRating from "./components/FieldRating";
-import Demo from "./components/Demo";
+
+import Hero from "@/components/Hero";
+import AllFacilitiesPage from "./allFacilities/page";
+import FieldRating from "@/components/FieldRating";
 
 export default function Home() {
   return (
     <div>
       <Hero></Hero>
       <FieldRating></FieldRating>
-      <Demo></Demo>
+      <AllFacilitiesPage></AllFacilitiesPage>
     </div>
   );
 }

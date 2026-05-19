@@ -3,11 +3,13 @@ import React from "react";
 
 const Hero = () => {
   return (
-    <div     className="w-full md:h-[520px] lg:h-[780px] bg-center bg-no-repeat"
-  style={{
-    backgroundImage: "url('/image/stadium.jpeg')",
-    backgroundSize: "100% 100%",
-  }}>
+    <div
+      className="w-full md:h-[520px] lg:h-[780px] bg-center bg-no-repeat"
+      style={{
+        backgroundImage: "url('/image/stadium.jpeg')",
+        backgroundSize: "100% 100%",
+      }}
+    >
       <div className="flex items-center justify-center h-[calc(100vh-80px)] px-4">
         <div className="space-y-3">
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-center leading-tight">
@@ -23,7 +25,7 @@ const Hero = () => {
           <div className="flex justify-center pt-8">
             <Button
               className={
-                "font-bold text-lg p-3 sm:text-2xl sm:p-6 hover:bg-white hover:text-black"
+                "font-bold text-lg p-3 sm:text-2xl sm:p-6 hover:bg-white hover:text-black transition-transform duration-500 hover:scale-110"
               }
             >
               BOOK A SESSION
