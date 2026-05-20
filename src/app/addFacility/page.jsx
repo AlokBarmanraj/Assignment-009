@@ -1,21 +1,20 @@
 "use client";
 import { Button, Card } from "@heroui/react";
 import React from "react";
-import { toast } from "react-toastify";
 
 const AddFacility = () => {
-  const onSubmit = async(e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const facility = Object.fromEntries(formData.entries());
-   const res=await fetch ("http://localhost:5000/addFacility",{
-        method:"POST",
-        headers:{
-            "content-type":"application/json"
-        },
-        body:JSON.stringify(facility)
-    })
-    const data= await res.json()
+    const res = await fetch("http://localhost:5000/addFacility", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(facility),
+    });
+    const data = await res.json();
   };
   return (
     <div className="m-5">
@@ -31,7 +30,7 @@ const AddFacility = () => {
           <div>
             <label className="block mb-2 font-medium">Facility Name</label>
             <input
-              name="facility"
+              name="facilityName"
               type="text"
               placeholder="Enter facility name"
               className="w-full px-4 py-3 rounded-xl border focus:outline-none focus:ring-2"
@@ -43,7 +42,7 @@ const AddFacility = () => {
             <label className="block mb-2 font-medium">Facility Type</label>
 
             <select
-              name="facilitytype"
+              name="facilityType"
               className="w-full px-4 py-3 rounded-xl border focus:outline-none focus:ring-2"
             >
               <option className="text-black">Football Turf</option>
@@ -84,7 +83,7 @@ const AddFacility = () => {
               <label className="block mb-2 font-medium">Price Per Hour</label>
 
               <input
-                name="price"
+                name="pricePerHour"
                 type="number"
                 placeholder="$20"
                 className="w-full px-4 py-3 rounded-xl border focus:outline-none focus:ring-2"
@@ -110,7 +109,7 @@ const AddFacility = () => {
             </label>
 
             <input
-              name="availabletime"
+              name="availableTimeSlot"
               type="text"
               placeholder="Example: 6AM - 10PM"
               className="w-full px-4 py-3 rounded-xl border focus:outline-none focus:ring-2"

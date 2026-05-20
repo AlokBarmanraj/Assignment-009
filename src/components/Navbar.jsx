@@ -7,6 +7,7 @@ import { ThemeSwitch } from "./ThemeSwitch";
 import Link from "next/link";
 import { authClient } from "@/lib/auth-client";
 import { IoLogOutOutline } from "react-icons/io5";
+import { CgProfile } from "react-icons/cg";
 
 const Navbar = () => {
   const { data: session } = authClient.useSession();
@@ -123,16 +124,39 @@ const Navbar = () => {
 
                   <Dropdown.Popover>
                     <Dropdown.Menu onAction={(key) => console.log(key)}>
-                      <Dropdown.Item id="my-bookings">
-                        My Bookings
+                      <Dropdown.Item
+                        id="my-bookings"
+                        className="text-[#2f94ff] font-bold"
+                      >
+                        <Link href="/myBookings">My Bookings</Link>
                       </Dropdown.Item>
 
-                      <Dropdown.Item id="add-facility">
-                        Add Facility
+                      <Dropdown.Item
+                        id="add-facility"
+                        className="text-[#2f94ff] font-bold"
+                      >
+                        <Link href="/addFacility"> Add Facility</Link>
                       </Dropdown.Item>
 
-                      <Dropdown.Item id="my-facilities">
-                        Manage My Facilities
+                      <Dropdown.Item
+                        id="my-facilities"
+                        className="text-[#2f94ff] font-bold"
+                      >
+                        <Link href="/manageMyFacilities">
+                          Manage My Facilities
+                        </Link>
+                      </Dropdown.Item>
+                      <Dropdown.Item
+                        id="profile"
+                        className="text-[#2f94ff] font-bold hover:bg-transparent focus:bg-transparent"
+                      >
+                        <Link
+                          href="/profile"
+                          className="flex items-center font-bold text-xl gap-1"
+                        >
+                          <CgProfile />
+                          Profile
+                        </Link>
                       </Dropdown.Item>
 
                       <Dropdown.Item
@@ -165,55 +189,66 @@ const Navbar = () => {
             <ul className="flex flex-col gap-2 p-4">
               {navLink}
               <hr />
-            {user ? (
-              <>
-                <Dropdown>
-                  <Dropdown.Trigger>
-                    <Avatar className="cursor-pointer">
-                      <Avatar.Image
-                        src={user?.image}
-                        alt={user?.name || "User"}
-                        referrerPolicy="no-referrer"
-                      />
+              {user ? (
+                <>
+                  <Dropdown>
+                    <Dropdown.Trigger>
+                      <Avatar className="cursor-pointer">
+                        <Avatar.Image
+                          src={user?.image}
+                          alt={user?.name || "User"}
+                          referrerPolicy="no-referrer"
+                        />
 
-                      <Avatar.Fallback>{user?.name?.[0]}</Avatar.Fallback>
-                    </Avatar>
-                  </Dropdown.Trigger>
+                        <Avatar.Fallback>{user?.name?.[0]}</Avatar.Fallback>
+                      </Avatar>
+                    </Dropdown.Trigger>
 
-                  <Dropdown.Popover>
-                    <Dropdown.Menu onAction={(key) => console.log(key)}>
-                      <Dropdown.Item id="my-bookings">
-                        My Bookings
-                      </Dropdown.Item>
+                    <Dropdown.Popover>
+                      <Dropdown.Menu onAction={(key) => console.log(key)}>
+                        <Dropdown.Item id="my-bookings">
+                          My Bookings
+                        </Dropdown.Item>
 
-                      <Dropdown.Item id="add-facility">
-                        Add Facility
-                      </Dropdown.Item>
+                        <Dropdown.Item id="add-facility">
+                          Add Facility
+                        </Dropdown.Item>
 
-                      <Dropdown.Item id="my-facilities">
-                        Manage My Facilities
-                      </Dropdown.Item>
-
-                      <Dropdown.Item
-                        id="logout"
-                        className="hover:bg-transparent focus:bg-transparent"
-                      >
-                        <Button onClick={handleLogOut} variant="danger">
-                          Logout <IoLogOutOutline />
-                        </Button>
-                      </Dropdown.Item>
-                    </Dropdown.Menu>
-                  </Dropdown.Popover>
-                </Dropdown>
-              </>
-            ) : (
-              <>
-                <Link href="signin">Login</Link>
-                <Link href="/signup">
-                  <Button className={"w-full"}>Sign Up</Button>
-                </Link>
-              </>
-            )}
+                        <Dropdown.Item id="my-facilities">
+                          Manage My Facilities
+                        </Dropdown.Item>
+                        <Dropdown.Item
+                          id="profile"
+                          className="text-[#2f94ff] font-bold hover:bg-transparent focus:bg-transparent"
+                        >
+                          <Link
+                            href="/profile"
+                            className="flex items-center font-bold text-xl gap-1"
+                          >
+                            <CgProfile />
+                            Profile
+                          </Link>
+                        </Dropdown.Item>
+                        <Dropdown.Item
+                          id="logout"
+                          className="hover:bg-transparent focus:bg-transparent"
+                        >
+                          <Button onClick={handleLogOut} variant="danger">
+                            Logout <IoLogOutOutline />
+                          </Button>
+                        </Dropdown.Item>
+                      </Dropdown.Menu>
+                    </Dropdown.Popover>
+                  </Dropdown>
+                </>
+              ) : (
+                <>
+                  <Link href="signin">Login</Link>
+                  <Link href="/signup">
+                    <Button className={"w-full"}>Sign Up</Button>
+                  </Link>
+                </>
+              )}
             </ul>
           </div>
         )}

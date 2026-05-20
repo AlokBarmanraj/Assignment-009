@@ -24,6 +24,11 @@ const SigninPage = () => {
           callbackURL: "/",
       })
     };
+     const handleGoogleSignIn=async ()=>{
+          const data = await authClient.signIn.social({
+        provider: "google",
+      });
+      };
   return (
     <div className="mt-16">
       <Card className="max-w-2xl p-10 mx-auto">
@@ -90,7 +95,7 @@ const SigninPage = () => {
 
           <div className="flex-1 border-t-2"></div>
         </div>
-        <Button className={"w-full mt-5 flex items-center justify-center gap-2 border border-gray-400 bg-transparent text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800 transition"}><FcGoogle />Continue With Google</Button>
+        <Button onClick={handleGoogleSignIn} className={"w-full mt-5 flex items-center justify-center gap-2 border border-gray-400 bg-transparent text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800 transition"}><FcGoogle />Continue With Google</Button>
       </Card>
     </div>
   );
