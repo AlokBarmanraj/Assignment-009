@@ -1,5 +1,5 @@
 "use client";
-import { Check } from "@gravity-ui/icons";
+import { authClient } from "@/lib/auth-client";
 import {
   Button,
   Card,
@@ -14,12 +14,23 @@ import React from "react";
 import { FcGoogle } from "react-icons/fc";
 
 const SigninPage = () => {
+  const onSubmit = async(e)=>{
+      e.preventDefault();
+      const formData = new FormData(e.currentTarget)
+      const user = Object.fromEntries (formData.entries())
+      const { data, error } = await authClient.signIn.email({
+          email:user.email,
+          password:user.password,
+          callbackURL: "/",
+      })
+    };
   return (
     <div className="mt-16">
       <Card className="max-w-2xl p-10 mx-auto">
+        <div><h1 className="font-bold text-3xl text-center pb-10">Login</h1></div>
         <Form
+        onSubmit={onSubmit}
           className="flex  flex-col gap-4"
-          render={(props) => <form {...props} data-custom="foo" />}
         >
           <TextField
             isRequired
@@ -33,7 +44,7 @@ const SigninPage = () => {
             }}
           >
             <Label>Email</Label>
-            <Input placeholder="john@example.com" />
+            <Input name="email" placeholder="john@example.com"/>
             <FieldError />
           </TextField>
           <TextField
@@ -55,7 +66,7 @@ const SigninPage = () => {
             }}
           >
             <Label>Password</Label>
-            <Input placeholder="Enter your password" />
+            <Input name="password" placeholder="Enter your password" />
             <Description>
               Must be at least 8 characters with 1 uppercase and 1 number
             </Description>

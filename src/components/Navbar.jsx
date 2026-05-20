@@ -1,14 +1,21 @@
 "use client";
 import { useState } from "react";
-import { Button } from "@heroui/react";
+import { Avatar, Button, Dropdown, Label } from "@heroui/react";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 import { ThemeSwitch } from "./ThemeSwitch";
 import Link from "next/link";
+import { authClient } from "@/lib/auth-client";
+import { IoLogOutOutline } from "react-icons/io5";
 
 const Navbar = () => {
+  const { data: session } = authClient.useSession();
+  const user = session?.user;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathName = usePathname();
+  const handleLogOut = async () => {
+    await authClient.signOut();
+  };
   const navLink = (
     <>
       <li>
@@ -97,9 +104,57 @@ const Navbar = () => {
             </div>
           </div>
           <ul className="hidden items-center gap-4 md:flex">{navLink}</ul>
+
           <div className="hidden items-center gap-4 md:flex">
-            <Link href="signin">Login</Link>
-            <Link href="/signup"><Button>Sign Up</Button></Link>
+            {user ? (
+              <>
+                <Dropdown>
+                  <Dropdown.Trigger>
+                    <Avatar className="cursor-pointer">
+                      <Avatar.Image
+                        src={user?.image}
+                        alt={user?.name || "User"}
+                        referrerPolicy="no-referrer"
+                      />
+
+                      <Avatar.Fallback>{user?.name?.[0]}</Avatar.Fallback>
+                    </Avatar>
+                  </Dropdown.Trigger>
+
+                  <Dropdown.Popover>
+                    <Dropdown.Menu onAction={(key) => console.log(key)}>
+                      <Dropdown.Item id="my-bookings">
+                        My Bookings
+                      </Dropdown.Item>
+
+                      <Dropdown.Item id="add-facility">
+                        Add Facility
+                      </Dropdown.Item>
+
+                      <Dropdown.Item id="my-facilities">
+                        Manage My Facilities
+                      </Dropdown.Item>
+
+                      <Dropdown.Item
+                        id="logout"
+                        className="hover:bg-transparent focus:bg-transparent"
+                      >
+                        <Button onClick={handleLogOut} variant="danger">
+                          Logout <IoLogOutOutline />
+                        </Button>
+                      </Dropdown.Item>
+                    </Dropdown.Menu>
+                  </Dropdown.Popover>
+                </Dropdown>
+              </>
+            ) : (
+              <>
+                <Link href="signin">Login</Link>
+                <Link href="/signup">
+                  <Button>Sign Up</Button>
+                </Link>
+              </>
+            )}
             <div>
               <ThemeSwitch></ThemeSwitch>
             </div>
@@ -109,12 +164,56 @@ const Navbar = () => {
           <div className="border-t border-separator backdrop-blur-lg md:hidden">
             <ul className="flex flex-col gap-2 p-4">
               {navLink}
-              <li className="mt-4 flex flex-col gap-2 border-t border-separator pt-4">
-                <Link href="/signin" className="block py-2">
-                  Login
+              <hr />
+            {user ? (
+              <>
+                <Dropdown>
+                  <Dropdown.Trigger>
+                    <Avatar className="cursor-pointer">
+                      <Avatar.Image
+                        src={user?.image}
+                        alt={user?.name || "User"}
+                        referrerPolicy="no-referrer"
+                      />
+
+                      <Avatar.Fallback>{user?.name?.[0]}</Avatar.Fallback>
+                    </Avatar>
+                  </Dropdown.Trigger>
+
+                  <Dropdown.Popover>
+                    <Dropdown.Menu onAction={(key) => console.log(key)}>
+                      <Dropdown.Item id="my-bookings">
+                        My Bookings
+                      </Dropdown.Item>
+
+                      <Dropdown.Item id="add-facility">
+                        Add Facility
+                      </Dropdown.Item>
+
+                      <Dropdown.Item id="my-facilities">
+                        Manage My Facilities
+                      </Dropdown.Item>
+
+                      <Dropdown.Item
+                        id="logout"
+                        className="hover:bg-transparent focus:bg-transparent"
+                      >
+                        <Button onClick={handleLogOut} variant="danger">
+                          Logout <IoLogOutOutline />
+                        </Button>
+                      </Dropdown.Item>
+                    </Dropdown.Menu>
+                  </Dropdown.Popover>
+                </Dropdown>
+              </>
+            ) : (
+              <>
+                <Link href="signin">Login</Link>
+                <Link href="/signup">
+                  <Button className={"w-full"}>Sign Up</Button>
                 </Link>
-                <Link href="/signup"><Button className="w-full">Sign Up</Button></Link>
-              </li>
+              </>
+            )}
             </ul>
           </div>
         )}
