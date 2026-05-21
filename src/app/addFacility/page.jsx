@@ -1,6 +1,7 @@
 "use client";
 import { Button, Card } from "@heroui/react";
 import React from "react";
+import toast from "react-hot-toast";
 
 const AddFacility = () => {
   const onSubmit = async (e) => {
@@ -15,6 +16,7 @@ const AddFacility = () => {
       body: JSON.stringify(facility),
     });
     const data = await res.json();
+    toast.success("Facility Add Successfully")
   };
   return (
     <div className="m-5">

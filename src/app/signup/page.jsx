@@ -12,6 +12,7 @@ import {
 } from "@heroui/react";
 import { redirect } from "next/navigation";
 import React from "react";
+import toast from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
 
 const SignupPage = () => {
@@ -26,10 +27,12 @@ const SignupPage = () => {
         image:user.image
     })
     if(data){
+      toast.success("Sign Up Successfully!")
       redirect("/")
+      
     }
     if(error){
-      alert("Sign Up Field")
+      toast.error("Sign Up Field!")
     }
   };
 

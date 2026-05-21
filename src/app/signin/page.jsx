@@ -14,29 +14,35 @@ import React from "react";
 import { FcGoogle } from "react-icons/fc";
 
 const SigninPage = () => {
-  const onSubmit = async(e)=>{
-      e.preventDefault();
-      const formData = new FormData(e.currentTarget)
-      const user = Object.fromEntries (formData.entries())
-      const { data, error } = await authClient.signIn.email({
-          email:user.email,
-          password:user.password,
-          callbackURL: "/",
-      })
-    };
-     const handleGoogleSignIn=async ()=>{
-          const data = await authClient.signIn.social({
-        provider: "google",
-      });
-      };
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const user = Object.fromEntries(formData.entries());
+    const { data, error } = await authClient.signIn.email({
+      email: user.email,
+      password: user.password,
+      callbackURL: "/",
+    });
+    if (data) {
+      toast.success("Sign Up Successfully!");
+      redirect("/");
+    }
+    if (error) {
+      toast.error("Sign Up Field!");
+    }
+  };
+  const handleGoogleSignIn = async () => {
+    const data = await authClient.signIn.social({
+      provider: "google",
+    });
+  };
   return (
     <div className="mt-16">
       <Card className="max-w-2xl p-10 mx-auto">
-        <div><h1 className="font-bold text-3xl text-center pb-10">Login</h1></div>
-        <Form
-        onSubmit={onSubmit}
-          className="flex  flex-col gap-4"
-        >
+        <div>
+          <h1 className="font-bold text-3xl text-center pb-10">Login</h1>
+        </div>
+        <Form onSubmit={onSubmit} className="flex  flex-col gap-4">
           <TextField
             isRequired
             name="email"
@@ -49,7 +55,7 @@ const SigninPage = () => {
             }}
           >
             <Label>Email</Label>
-            <Input name="email" placeholder="john@example.com"/>
+            <Input name="email" placeholder="john@example.com" />
             <FieldError />
           </TextField>
           <TextField
@@ -87,15 +93,21 @@ const SigninPage = () => {
           </div>
         </Form>
         <div className="flex items-center my-6">
-
           <div className="flex-1 border-t-2"></div>
-
 
           <span className="mx-4 font-semibold uppercase text-sm">or</span>
 
           <div className="flex-1 border-t-2"></div>
         </div>
-        <Button onClick={handleGoogleSignIn} className={"w-full mt-5 flex items-center justify-center gap-2 border border-gray-400 bg-transparent text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800 transition"}><FcGoogle />Continue With Google</Button>
+        <Button
+          onClick={handleGoogleSignIn}
+          className={
+            "w-full mt-5 flex items-center justify-center gap-2 border border-gray-400 bg-transparent text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800 transition"
+          }
+        >
+          <FcGoogle />
+          Continue With Google
+        </Button>
       </Card>
     </div>
   );

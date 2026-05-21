@@ -3,7 +3,7 @@ import ManageMyFacilitiesCard from '@/components/ManageMyFacilitiesCard';
 import React from 'react';
 
 const ManageMyFacilities =async () => {
-      const res= await fetch("http://localhost:5000/addFacility");
+      const res= await fetch("http://localhost:5000/allFacility");
     const facility = await res.json();
     return (
         <div className='max-w-7xl mx-auto mt-5'>

@@ -2,13 +2,15 @@
 import Hero from "@/components/Hero";
 import AllFacilitiesPage from "./allFacilities/page";
 import FieldRating from "@/components/FieldRating";
+import SliderClub from "@/components/SliderClub";
 
 export default function Home() {
   return (
     <div>
       <Hero></Hero>
-      <FieldRating></FieldRating>
-      <AllFacilitiesPage></AllFacilitiesPage>
+      <SliderClub></SliderClub>
+       <FieldRating></FieldRating>
+      <AllFacilitiesPage></AllFacilitiesPage> 
     </div>
   );
 }

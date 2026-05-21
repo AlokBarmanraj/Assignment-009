@@ -3,7 +3,7 @@ import React from 'react';
 
 
 const AllFacilitiesPage = async () => {
-    const res= await fetch("http://localhost:5000/addFacility");
+    const res= await fetch("http://localhost:5000/allFacility");
     const facility = await res.json();
     return (
         <div className='max-w-7xl mx-auto mt-5'>

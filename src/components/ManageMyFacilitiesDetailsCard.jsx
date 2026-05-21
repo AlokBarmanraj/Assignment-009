@@ -53,13 +53,6 @@ const ManageMyFacilitiesDetailsCard = ({ facility }) => {
             <div className="flex items-center font-bold">
               <h3>{description}</h3>
             </div>
-            <Button
-              className={
-                "w-full font-bold text-2xl transition-transform duration-500 hover:scale-110 mt-5"
-              }
-            >
-              Book Now
-            </Button>
           </div>
         </div>
       </Card>
