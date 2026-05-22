@@ -1,8 +1,10 @@
 
 import Hero from "@/components/Hero";
-import AllFacilitiesPage from "./allFacilities/page";
+
 import FieldRating from "@/components/FieldRating";
 import SliderClub from "@/components/SliderClub";
+import PlayBasket from "@/components/PlayBasket";
+import AllFacilitiesPage from "../(auth)/allFacilities/page";
 
 export default function Home() {
   return (
@@ -10,7 +12,9 @@ export default function Home() {
       <Hero></Hero>
       <SliderClub></SliderClub>
        <FieldRating></FieldRating>
-      <AllFacilitiesPage></AllFacilitiesPage> 
+      {/* <AllFacilitiesPage></AllFacilitiesPage>  */}
+      <AllFacilitiesPage></AllFacilitiesPage>
+      <PlayBasket></PlayBasket>
     </div>
   );
 }

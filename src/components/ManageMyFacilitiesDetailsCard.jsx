@@ -25,14 +25,14 @@ const ManageMyFacilitiesDetailsCard = ({ facility }) => {
       </div>
       <Card>
         <div className="gap-10 p-3">
-          <div>
+          <div className="w-full h-[250px] md:h-[400px] lg:h-[500px] overflow-hidden rounded-2xl bg-black flex items-center justify-center">
             <Image
               src={image}
-              width={700}
-              height={400}
+              width={900}
+              height={500}
               alt="image"
-              className=" rounded-2xl object-cover transition-transform duration-500 hover:scale-110"
-            ></Image>
+              className="w-full h-full object-contain transition-transform duration-500 hover:scale-110"
+            />
           </div>
           <div className="space-y-3 pt-5">
             <h1 className="font-bold text-3xl">{facilityName}</h1>

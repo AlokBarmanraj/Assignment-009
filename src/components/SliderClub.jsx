@@ -16,28 +16,24 @@ const SliderClub = () => {
     "/image/10.jpeg",
     "/image/11.jpeg",
     "/image/12.jpeg",
-
   ];
 
   const loopImages = [...images, ...images];
   return (
-    <div className="max-w-7xl mx-auto overflow-hidden py-4">
-<div className="flex animate-slide whitespace-nowrap">
-  {loopImages.map((img, index) => (
-    <div
-      key={index}
-      className="flex-shrink-0 w-[150px]"
-    >
-      <Image
-        src={img}
-        alt={`slide-${index}`}
-        width={200}
-        height={120}
-        className="w-full h-[120px] object-cover"
-      />
-    </div>
-  ))}
-</div>
+    <div className="max-w-7xl mx-auto overflow-hidden px-4 mt-5">
+      <div className="flex animate-slide whitespace-nowrap">
+        {loopImages.map((img, index) => (
+          <div key={index} className="flex-shrink-0 w-[150px]">
+            <Image
+              src={img}
+              alt={`slide-${index}`}
+              width={200}
+              height={120}
+              className="w-full h-[120px] object-cover"
+            />
+          </div>
+        ))}
+      </div>
 
       <style jsx>{`
         .animate-slide {

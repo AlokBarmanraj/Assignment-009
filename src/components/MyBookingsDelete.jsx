@@ -1,22 +1,21 @@
 "use client";
 import { AlertDialog, Button } from "@heroui/react";
-import { redirect } from "next/navigation";
 import React from "react";
 import toast from "react-hot-toast";
 import { MdDeleteOutline } from "react-icons/md";
 
-const DeleteFacility = ({ facility }) => {
-  const { _id, facilityName } = facility;
-  const handleDelete = async () => {
-    const res = await fetch(`http://localhost:5000/addFacility/${_id}`, {
+const MyBookingsDelete = ({ bookings }) => {
+  const { _id, facilityName } = bookings;
+  const bookingHandleDelete = async () => {
+    const res = await fetch(`http://localhost:5000/myBookings/${_id}`, {
       method: "DELETE",
       headers: {
         "content-type": "application/json",
-      }
+      },
     });
-    const data =await res.json()
-    toast.success("Facility Delete Successfully")
-    redirect("/manageMyFacilities")
+    const data = await res.json();
+    window.location.reload()
+    toast.success("Facility Delete Successfully");
   };
   return (
     <AlertDialog>
@@ -44,7 +43,7 @@ const DeleteFacility = ({ facility }) => {
               <Button slot="close" variant="tertiary">
                 Cancel
               </Button>
-              <Button onClick={handleDelete} slot="close" variant="danger">
+              <Button onClick={bookingHandleDelete} slot="close" variant="danger">
                 Conform Delete
               </Button>
             </AlertDialog.Footer>
@@ -55,4 +54,4 @@ const DeleteFacility = ({ facility }) => {
   );
 };
 
-export default DeleteFacility;
+export default MyBookingsDelete;

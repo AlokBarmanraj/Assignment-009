@@ -18,7 +18,7 @@ const ProfilePage = () => {
           <Avatar.Fallback>{user?.name?.[0]}</Avatar.Fallback>
         </Avatar>
         <div className="text-center mt-5">
-          <h2 className="font-bold text-3xl">{user?.name}</h2>
+          <h2 className="font-bold text-gray-600 text-3xl">{user?.name}</h2>
           <h2 className="font-bold text-gray-400 italic">{user?.email}</h2>
         </div>
         <div className="text-center mt-10">

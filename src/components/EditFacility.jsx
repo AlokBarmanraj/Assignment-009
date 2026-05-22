@@ -1,10 +1,19 @@
 "use client";
 import { Button, Modal, Surface } from "@heroui/react";
+import { redirect } from "next/navigation";
 import React from "react";
+import toast from "react-hot-toast";
 import { FaRegEdit } from "react-icons/fa";
 
 const EditFacility = ({ facility }) => {
-    const{_id}=facility
+  const { _id,    facilityName,
+    facilityType,
+    image,
+    location,
+    pricePerHour,
+    capacity,
+    availableTimeSlot,
+    description, } = facility;
   const onSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -17,7 +26,8 @@ const EditFacility = ({ facility }) => {
       body: JSON.stringify(facility),
     });
     const data = await res.json();
-    console.log(data);
+    toast.success("Facility Edit Successfully")
+    redirect(`/manageMyFacilities/${_id}`)
   };
   return (
     <Modal>
@@ -148,7 +158,9 @@ const EditFacility = ({ facility }) => {
                     ></textarea>
                   </div>
                   <Modal.Footer>
-                    <Button type="submit" slot="close">Save</Button>
+                    <Button type="submit" slot="close">
+                      Save
+                    </Button>
                   </Modal.Footer>
                 </form>
               </Surface>

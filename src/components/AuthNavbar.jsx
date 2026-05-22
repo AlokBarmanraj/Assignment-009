@@ -9,8 +9,8 @@ import { authClient } from "@/lib/auth-client";
 import { IoLogOutOutline } from "react-icons/io5";
 import { CgProfile } from "react-icons/cg";
 
-const Navbar = () => {
-  const { data: session } = authClient.useSession();
+const AuthNavbar = () => {
+      const { data: session } = authClient.useSession();
   const user = session?.user;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathName = usePathname();
@@ -58,9 +58,9 @@ const Navbar = () => {
       </li>
     </>
   );
-  return (
+    return (
     <div>
-      <nav className="fixed mt-3 top-0 z-40 w-full">
+      <nav className="sticky mt-2 top-0 z-40 w-full border-b border-separator bg-background/70 backdrop-blur-lg">
         <header className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
           <div className="flex items-center gap-4">
             <button
@@ -254,6 +254,7 @@ const Navbar = () => {
         )}
       </nav>
     </div>
-  );
+    );
 };
-export default Navbar;
+
+export default AuthNavbar;

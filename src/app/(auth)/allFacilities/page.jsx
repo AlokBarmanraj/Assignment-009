@@ -1,5 +1,8 @@
 import FacilityCard from '@/components/FacilityCard';
 import React from 'react';
+export const metadata = {
+  title: "Turfi | AllFacilities",
+};
 
 
 const AllFacilitiesPage = async () => {

@@ -1,9 +1,11 @@
 "use client";
 import { Button, Card } from "@heroui/react";
+import { redirect } from "next/navigation";
 import React from "react";
 import toast from "react-hot-toast";
 
 const AddFacility = () => {
+  
   const onSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -17,6 +19,7 @@ const AddFacility = () => {
     });
     const data = await res.json();
     toast.success("Facility Add Successfully")
+    redirect("/allFacilities")
   };
   return (
     <div className="m-5">
