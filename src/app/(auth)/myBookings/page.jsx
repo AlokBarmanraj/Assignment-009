@@ -2,6 +2,9 @@ import MyBookingsAllFacility from "@/components/MyBookingsAllFacility";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import React from "react";
+export const metadata = {
+  title: "Turfi | My Bookings",
+};
 
 const MyBookingsPage = async () => {
   const session = await auth.api.getSession({
@@ -37,13 +40,6 @@ const MyBookingsPage = async () => {
             </div>
           ))
         )}
-      </div>
-      <div>
-        {bookings.map((bookings) => (
-          <div key={bookings._id}>
-            <MyBookingsAllFacility bookings={bookings}></MyBookingsAllFacility>
-          </div>
-        ))}
       </div>
     </div>
   );

@@ -13,7 +13,7 @@ const MyBookingsAllFacility = ({ bookings }) => {
   return (
     <div className="mb-5">
       <Card>
-        <div className="float-none lg:flex justify-between gap-8 items-center p-3">
+        <div className="float-none lg:flex gap-8 items-center p-3">
           <div>
             <Image
               src={image}

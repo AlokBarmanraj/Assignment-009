@@ -1,6 +1,4 @@
-
 import Hero from "@/components/Hero";
-
 import FieldRating from "@/components/FieldRating";
 import SliderClub from "@/components/SliderClub";
 import PlayBasket from "@/components/PlayBasket";
@@ -11,8 +9,7 @@ export default function Home() {
     <div>
       <Hero></Hero>
       <SliderClub></SliderClub>
-       <FieldRating></FieldRating>
-      {/* <AllFacilitiesPage></AllFacilitiesPage>  */}
+      <FieldRating></FieldRating>
       <AllFacilitiesPage></AllFacilitiesPage>
       <PlayBasket></PlayBasket>
     </div>

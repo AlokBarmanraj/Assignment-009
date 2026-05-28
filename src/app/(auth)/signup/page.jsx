@@ -11,11 +11,13 @@ import {
   TextField,
 } from "@heroui/react";
 import { redirect } from "next/navigation";
-import React from "react";
+import React, { useState } from "react";
 import toast from "react-hot-toast";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 
 const SignupPage = () => {
+  const [showPassword, setShowPassword] = useState(false);
   const onSubmit = async(e)=>{
     e.preventDefault();
     const formData = new FormData(e.currentTarget)
@@ -74,29 +76,51 @@ const SignupPage = () => {
             <Input name="image" placeholder="Enter image url" />
             <FieldError />
           </TextField>
+          {/* Password */}
           <TextField
             isRequired
             minLength={8}
             name="password"
-            type="password"
+            type={showPassword ? "text" : "password"}
             validate={(value) => {
               if (value.length < 8) {
                 return "Password must be at least 8 characters";
               }
+
               if (!/[A-Z]/.test(value)) {
                 return "Password must contain at least one uppercase letter";
               }
+
               if (!/[0-9]/.test(value)) {
                 return "Password must contain at least one number";
               }
+
               return null;
             }}
           >
             <Label>Password</Label>
-            <Input name="password" placeholder="Enter your password" />
+
+            <div className="relative w-full">
+              <Input
+                name="password"
+                type={showPassword ? "text" : "password"}
+                placeholder="Enter your password"
+                className="w-full"
+              />
+
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500"
+              >
+                {showPassword ? <FaEye /> : <FaEyeSlash />}
+              </button>
+            </div>
+
             <Description>
               Must be at least 8 characters with 1 uppercase and 1 number
             </Description>
+
             <FieldError />
           </TextField>
           <div className="flex items-center gap-2">

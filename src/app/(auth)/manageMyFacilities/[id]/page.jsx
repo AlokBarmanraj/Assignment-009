@@ -1,5 +1,8 @@
 import ManageMyFacilitiesDetailsCard from "@/components/ManageMyFacilitiesDetailsCard";
 import React from "react";
+export const metadata = {
+  title: "Turfi | Manage MyFacilities Details ",
+}
 
 const ManageMyFacilitiesDetailsPage = async ({ params }) => {
   const { id } = await params;
