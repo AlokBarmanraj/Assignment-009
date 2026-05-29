@@ -3,6 +3,7 @@ import FieldRating from "@/components/FieldRating";
 import SliderClub from "@/components/SliderClub";
 import PlayBasket from "@/components/PlayBasket";
 import AllFacilitiesPage from "../(auth)/allFacilities/page";
+import LastBanner from "@/components/LastBanner";
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
       <FieldRating></FieldRating>
       <AllFacilitiesPage></AllFacilitiesPage>
       <PlayBasket></PlayBasket>
+      <LastBanner></LastBanner>
     </div>
   );
 }

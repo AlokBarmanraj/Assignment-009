@@ -4,8 +4,11 @@ import React, { useState } from "react";
 import { Button, Modal, Surface } from "@heroui/react";
 import { FaRegEdit } from "react-icons/fa";
 import toast from "react-hot-toast";
+import { authClient } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
 
 const MyBookingsUpdate = ({ bookings }) => {
+  const router = useRouter();
   const {
     _id,
     facilityName,
@@ -28,17 +31,19 @@ const MyBookingsUpdate = ({ bookings }) => {
       hours,
       totalPrice,
     };
-
+    const { data: tokenData } = await authClient.token();
     const res = await fetch(`http://localhost:5000/myBookings/${_id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
+        authorization: `Bearer ${tokenData?.token}`
       },
       body: JSON.stringify(updatedBooking),
     });
 
     const data = await res.json();
-    toast.success("My Bookings Update Successfully")
+    toast.success("My Bookings Update Successfully");
+    router.refresh();
   };
 
   return (

@@ -53,5 +53,4 @@ const MyBookingsAllFacility = ({ bookings }) => {
     </div>
   );
 };
-
 export default MyBookingsAllFacility;

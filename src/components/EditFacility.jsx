@@ -1,4 +1,5 @@
 "use client";
+import { authClient } from "@/lib/auth-client";
 import { Button, Modal, Surface } from "@heroui/react";
 import { redirect } from "next/navigation";
 import React from "react";
@@ -6,28 +7,33 @@ import toast from "react-hot-toast";
 import { FaRegEdit } from "react-icons/fa";
 
 const EditFacility = ({ facility }) => {
-  const { _id,    facilityName,
+  const {
+    _id,
+    facilityName,
     facilityType,
     image,
     location,
     pricePerHour,
     capacity,
     availableTimeSlot,
-    description, } = facility;
+    description,
+  } = facility;
   const onSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const facility = Object.fromEntries(formData.entries());
+    const {data:tokenData}=await authClient.token()
     const res = await fetch(`http://localhost:5000/addFacility/${_id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",
+        authorization: `Bearer ${tokenData?.token}`
       },
       body: JSON.stringify(facility),
     });
     const data = await res.json();
-    toast.success("Facility Edit Successfully")
-    redirect(`/manageMyFacilities/${_id}`)
+    toast.success("Facility Edit Successfully");
+    redirect(`/manageMyFacilities/${_id}`);
   };
   return (
     <Modal>

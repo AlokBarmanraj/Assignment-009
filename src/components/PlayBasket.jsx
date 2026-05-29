@@ -15,7 +15,7 @@ const PlayBasket = () => {
           />
         </div>
         <div>
-          <h1 className="font-bold text-3xl mb-3.5">Play with Passion, Win with Pride</h1>
+          <h1 className="font-bold text-4xl mb-3.5">Play with Passion, Win with Pride</h1>
           <p>
             Experience the energy, teamwork, and excitement of competitive
             sports. Our sports club creates the perfect environment for athletes

@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useMemo, useState } from "react";
 import FacilityCard from "./FacilityCard";
-import { Button } from "@heroui/react";
+import { Button, Spinner } from "@heroui/react";
 
 const SearchAndFilter = () => {
   const [facilities, setFacilities] = useState([]);
@@ -14,6 +14,7 @@ const SearchAndFilter = () => {
 
   useEffect(() => {
     const fetchFacilities = async () => {
+      
       try {
         const res = await fetch("http://localhost:5000/allFacility");
         const data = await res.json();
@@ -56,14 +57,12 @@ const SearchAndFilter = () => {
           className="w-full md:w-[400px] border rounded-xl px-4 py-3 outline-none"
         />
 
-
         <Button
           onClick={() => setSearchTerm(searchInput)}
           className="p-6 text-white rounded-xl w-full md:w-auto"
         >
           Search
         </Button>
-
 
         <select
           value={selectedType}
@@ -81,7 +80,10 @@ const SearchAndFilter = () => {
       </div>
 
       {loading ? (
-        <p>Loading facilities...</p>
+        // <p>Loading facilities...</p>
+        <div className="min-h-screen flex items-center justify-center">
+          <Spinner size="xl" />
+        </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredFacilities.map((facility) => (

@@ -1,4 +1,5 @@
 "use client";
+import { authClient } from "@/lib/auth-client";
 import { AlertDialog, Button } from "@heroui/react";
 import { redirect } from "next/navigation";
 import React from "react";
@@ -8,10 +9,12 @@ import { MdDeleteOutline } from "react-icons/md";
 const DeleteFacility = ({ facility }) => {
   const { _id, facilityName } = facility;
   const handleDelete = async () => {
+    const {data:tokenData}=await authClient.token()
     const res = await fetch(`http://localhost:5000/addFacility/${_id}`, {
       method: "DELETE",
       headers: {
         "content-type": "application/json",
+        authorization: `Bearer ${tokenData?.token}`
       }
     });
     const data =await res.json()

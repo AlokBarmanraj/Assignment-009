@@ -1,4 +1,5 @@
 "use client";
+import { authClient } from "@/lib/auth-client";
 import { AlertDialog, Button } from "@heroui/react";
 import React from "react";
 import toast from "react-hot-toast";
@@ -6,15 +7,18 @@ import { MdDeleteOutline } from "react-icons/md";
 
 const MyBookingsDelete = ({ bookings }) => {
   const { _id, facilityName } = bookings;
+
   const bookingHandleDelete = async () => {
+    const { data: tokenData } = await authClient.token();
     const res = await fetch(`http://localhost:5000/myBookings/${_id}`, {
       method: "DELETE",
       headers: {
         "content-type": "application/json",
+        authorization: `Bearer ${tokenData?.token}`
       },
     });
     const data = await res.json();
-    window.location.reload()
+    window.location.reload();
     toast.success("Facility Delete Successfully");
   };
   return (
@@ -43,7 +47,11 @@ const MyBookingsDelete = ({ bookings }) => {
               <Button slot="close" variant="tertiary">
                 Cancel
               </Button>
-              <Button onClick={bookingHandleDelete} slot="close" variant="danger">
+              <Button
+                onClick={bookingHandleDelete}
+                slot="close"
+                variant="danger"
+              >
                 Conform Delete
               </Button>
             </AlertDialog.Footer>
