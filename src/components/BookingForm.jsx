@@ -32,7 +32,7 @@ const BookingForm = ({ facilityData }) => {
       createdAt: new Date(),
     };
     const {data:tokenData}=await authClient.token()
-    const res = await fetch("http://localhost:5000/myBookings", {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/myBookings`, {
       method: "POST",
       headers: {
         "content-type": "application/json",

@@ -12,7 +12,7 @@ const AddFacility = () => {
     const formData = new FormData(e.currentTarget);
     const facility = Object.fromEntries(formData.entries());
     const {data:tokenData}=await authClient.token()
-    const res = await fetch("http://localhost:5000/addFacility", {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/addFacility`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
