@@ -5,7 +5,10 @@ export const metadata = {
 };
 
 const ManageMyFacilities = async () => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/allFacility`);
+  // const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/allFacility`);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/allFacility`, {
+    cache: "no-store",
+  });
   const facility = await res.json();
   return (
     <div className="max-w-7xl mx-auto mt-5">
